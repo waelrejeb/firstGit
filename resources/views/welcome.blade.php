@@ -13,9 +13,10 @@
       <th scope="col">category</th>
             <th scope="col">nbrPag</th>
 
-        <th scope="col">Actions</th>
+        
+        <th scope="col">user</th>
 
-
+<th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -26,7 +27,12 @@
       <td>{{$livre->auteur}}</td>
       <td>{{$livre->category->name}}</td>
 
-      <td>{{$livre->nbre_pages}}</td>
+       <td>{{$livre->nbre_pages}}</td>
+
+       
+        <td>{{$livre->user->name}}</td>
+
+     
       <td>
        <a href="{{route('voirLivre',$livre->id)}}" class="btn btn-primary">voir</a>
        <a href="{{route('editerLivre',$livre->id)}}" class="btn btn-warning">editer</a>@auth

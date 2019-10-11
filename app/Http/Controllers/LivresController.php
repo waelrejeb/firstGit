@@ -26,7 +26,7 @@ class LivresController extends Controller
     	//     	echo $Request->prenom."<br>";
     	//     	echo $Request['email'];
         $category=Category::all(); ///// tres ipmortant de faire ca
-        
+        $data['user_id']=auth()->user()->id;
 
 			return view('livre');
 
@@ -37,10 +37,11 @@ $data=$request->validate([
 	'titre'=>'required |min:5',
 	'description'=>'required',
 	'nbre_pages'=>'required',
-	'auteur'=>'required',
-    'category_id'=>'required'
-	]);
+	'auteur'=>'',
+    'category_id'=>'required',
 
+	]);
+$data['user_id']=auth()->user()->id;
 
    Livre::create($data);
     	// $livre = new Livre();
@@ -58,6 +59,9 @@ $data=$request->validate([
     	
     	$livre_a_supprimer=Livre::find($id);//::where('id',$id)->first();
     	// dd($livre_a_supprimer);
+        if(auth()->user()->id !=$livre_a_supprimer->user->id){
+           return back()->with('error','vous navez pas le droit'); 
+        }
     	$livre_a_supprimer->delete();
     	return back()->with('success','votre livre a été supprimer');
 
