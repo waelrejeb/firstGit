@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class AddUserToLivresTable extends Migration
 {
+    //bommmantaire
     /**
      * Run the migrations.
      *
